@@ -435,7 +435,8 @@ set(lib_srcs
     uvcode.h
     tiffio.hxx
     "${CMAKE_CURRENT_BINARY_DIR}/tif_config.h"
-    "${CMAKE_CURRENT_BINARY_DIR}/tiffconf.h"
+    # "${CMAKE_CURRENT_BINARY_DIR}/tiffconf.h"
+    _tiffconf.h
     )
 
 if(WIN32 AND NOT HAVE_SNPRINTF)
