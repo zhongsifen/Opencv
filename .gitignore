@@ -1,4 +1,4 @@
-# ignore dot files/directories
+*.tgz
 .*
 !.gitignore
 
