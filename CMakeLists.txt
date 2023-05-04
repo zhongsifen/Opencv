@@ -6,6 +6,8 @@
 #
 # ----------------------------------------------------------------------------
 
+include(set.cmake)
+
 # Disable in-source builds to prevent source tree corruption.
 if(" ${CMAKE_SOURCE_DIR}" STREQUAL " ${CMAKE_BINARY_DIR}")
   message(FATAL_ERROR "
@@ -360,10 +362,10 @@ OCV_OPTION(WITH_HPX "Include Ste||ar Group HPX support" OFF
 OCV_OPTION(WITH_OPENMP "Include OpenMP support" OFF
   VISIBLE_IF TRUE
   VERIFY HAVE_OPENMP)
-OCV_OPTION(WITH_PTHREADS_PF "Use pthreads-based parallel_for" ON
+OCV_OPTION(WITH_PTHREADS_PF "Use pthreads-based parallel_for" OFF
   VISIBLE_IF NOT WIN32 OR MINGW
   VERIFY HAVE_PTHREADS_PF)
-OCV_OPTION(WITH_TIFF "Include TIFF support" ON
+OCV_OPTION(WITH_TIFF "Include TIFF support" OFF
   VISIBLE_IF NOT IOS
   VERIFY HAVE_TIFF)
 OCV_OPTION(WITH_V4L "Include Video 4 Linux support" ON
@@ -947,7 +949,7 @@ include(cmake/OpenCVExtraTargets.cmake)
 # ----------------------------------------------------------------------------
 
 # opencv.hpp and legacy headers
-add_subdirectory(include)
+# add_subdirectory(include)
 
 # Enable compiler options for OpenCV modules/apps/samples only (ignore 3rdparty)
 ocv_add_modules_compiler_options()
@@ -1535,14 +1537,14 @@ if(WITH_GPHOTO2 OR HAVE_GPHOTO2)
 endif()
 
 # Order is similar to CV_PARALLEL_FRAMEWORK in core/src/parallel.cpp
-ocv_build_features_string(parallel_status EXCLUSIVE
-  IF HAVE_TBB THEN "TBB (ver ${TBB_VERSION_MAJOR}.${TBB_VERSION_MINOR} interface ${TBB_INTERFACE_VERSION})"
-  IF HAVE_HPX THEN "HPX"
-  IF HAVE_OPENMP THEN "OpenMP"
-  IF HAVE_GCD THEN "GCD"
-  IF WINRT OR HAVE_CONCURRENCY THEN "Concurrency"
-  IF HAVE_PTHREADS_PF THEN "pthreads"
-  ELSE "none")
+# ocv_build_features_string(parallel_status EXCLUSIVE
+#   IF HAVE_TBB THEN "TBB (ver ${TBB_VERSION_MAJOR}.${TBB_VERSION_MINOR} interface ${TBB_INTERFACE_VERSION})"
+#   IF HAVE_HPX THEN "HPX"
+#   IF HAVE_OPENMP THEN "OpenMP"
+#   IF HAVE_GCD THEN "GCD"
+#   IF WINRT OR HAVE_CONCURRENCY THEN "Concurrency"
+#   IF HAVE_PTHREADS_PF THEN "pthreads"
+#   ELSE "none")
 status("")
 status("  Parallel framework:" "${parallel_status}")
 if (OPENCV_DISABLE_THREAD_SUPPORT)
@@ -1783,8 +1785,8 @@ if(BUILD_opencv_python3)
   status("    install path:"  HAVE_opencv_python3  THEN "${__INSTALL_PATH_PYTHON3}"                            ELSE "-")
 endif()
 
-status("")
-status("  Python (for build):"  PYTHON_DEFAULT_AVAILABLE THEN "${PYTHON_DEFAULT_EXECUTABLE}" ELSE NO)
+# status("")
+# status("  Python (for build):"  PYTHON_DEFAULT_AVAILABLE THEN "${PYTHON_DEFAULT_EXECUTABLE}" ELSE NO)
 
 # ========================== java ==========================
 if(BUILD_JAVA)

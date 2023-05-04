@@ -977,9 +977,9 @@ macro(ocv_finalize_status)
   endif()
 
   if(UNIX)
-    install(FILES "${OpenCV_SOURCE_DIR}/platforms/scripts/valgrind.supp"
-                  "${OpenCV_SOURCE_DIR}/platforms/scripts/valgrind_3rdparty.supp"
-            DESTINATION "${OPENCV_OTHER_INSTALL_PATH}" COMPONENT "dev")
+    # install(FILES "${OpenCV_SOURCE_DIR}/platforms/scripts/valgrind.supp"
+    #               "${OpenCV_SOURCE_DIR}/platforms/scripts/valgrind_3rdparty.supp"
+    #         DESTINATION "${OPENCV_OTHER_INSTALL_PATH}" COMPONENT "dev")
   endif()
 endmacro()
 
